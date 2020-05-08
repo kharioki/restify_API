@@ -8,6 +8,7 @@ const server = restify.createServer();
 server.use(restify.plugins.bodyParser());
 
 server.listen(config.PORT, () => {
+  mongoose.set('useFindAndModify', false);
   mongoose.connect(config.MONGODB_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true

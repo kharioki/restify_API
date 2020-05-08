@@ -1,0 +1,30 @@
+{
+  "name": "restify_customer_api",
+  "version": "1.0.0",
+  "description": "A nodeJS API built with Restify and Mongoose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kharioki/restify_API.git"
+  },
+  "keywords": [
+    "restify",
+    "mongoose",
+    "JWT"
+  ],
+  "author": "kharioki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kharioki/restify_API/issues"
+  },
+  "homepage": "https://github.com/kharioki/restify_API#readme",
+  "dependencies": {
+    "mongoose": "^5.9.12",
+    "mongoose-timestamp": "^0.6.0",
+    "restify": "^8.5.1",
+    "restify-errors": "^8.0.2"
+  }
+}

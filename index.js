@@ -10,7 +10,7 @@ const server = restify.createServer();
 server.use(restify.plugins.bodyParser());
 
 // protect routes
-server.use(rjwt({ secret: config.JWT_SECRET }).unless({ path: ['/auth'] }));
+// server.use(rjwt({ secret: config.JWT_SECRET }).unless({ path: ['/auth'] }));
 
 server.listen(config.PORT, () => {
   mongoose.set('useFindAndModify', false);

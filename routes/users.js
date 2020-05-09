@@ -1,7 +1,10 @@
 const errors = require('restify-errors');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
+const config = require('../config');
 const User = require('../models/User');
+const auth = require('./auth');
 
 module.exports = server => {
   //Register users
@@ -24,5 +27,29 @@ module.exports = server => {
         }
       });
     });
+  });
+
+  // Auth user
+  server.post('/auth', async (req, res, next) => {
+    const { email, password } = req.body;
+
+    try {
+      // Authenticate user
+      const user = await auth.authenticate(email, password);
+
+      // create JWT
+      const token = jwt.sign(user.toJSON(), config.JWT_SECRET, {
+        expiresIn: '15m'
+      });
+
+      const { iat, exp } = jwt.decode(token);
+
+      // respond with token
+      res.send({ iat, exp, token });
+      next();
+    } catch (err) {
+      // User unauthorized
+      return next(new errors.UnauthorizedError(err));
+    }
   });
 };
